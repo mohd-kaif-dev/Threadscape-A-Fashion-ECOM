@@ -25,7 +25,7 @@ const FeaturesSection = () => {
           <div className="p-4 rounded-full mb-4">
             <HiArrowPathRoundedSquare className="text-2xl" />
           </div>
-          <h4 className="tracking-tighter mb-2 font-bold">45 DAYS RETURN</h4>
+          <h4 className="tracking-tighter mb-2 font-bold">4-5 DAYS RETURN</h4>
           <p className="text-sm text-gray-600 tracking-tighter">
             Money back guarantee
           </p>

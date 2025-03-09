@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import RegisterImage from "../assets/register.webp";
+import { motion } from "framer-motion";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { RiUserHeartFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,7 +43,12 @@ const Register = () => {
   return (
     <section className=" flex h-[650px]">
       {/* Left Section */}
-      <div className="p-8 md:p-12 w-full md:w-1/2 flex items-center justify-center">
+      <motion.div
+        initial={{ opacity: 0, x: -200 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        className="p-8 md:p-12 w-full md:w-1/2 flex items-center justify-center"
+      >
         <form
           onSubmit={handleSubmit}
           className="w-full max-w-xs flex flex-col items-center justify-center rounded-lg shadow-md shadow-black/50 px-8 py-3"
@@ -108,7 +114,7 @@ const Register = () => {
             </Link>
           </p>
         </form>
-      </div>
+      </motion.div>
 
       {/* Right Section */}
       <div className="hidden md:block w-1/2 bg-gray-800">

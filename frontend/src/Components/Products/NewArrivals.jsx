@@ -116,13 +116,13 @@ const NewArrivals = () => {
         {newArrivals?.map((product) => (
           <div
             key={product._id}
-            className="min-w-[100%] sm:min-w-[50%] lg:min-w-[30%] relative snap-center md:snap-none"
+            className="min-w-[100%] sm:min-w-[50%] lg:min-w-[30%] relative snap-center md:snap-none container h-[400px] overflow-hidden"
           >
             <img
               src={product.images[0]?.url}
               alt={product.images[0]?.altText || product.name}
               draggable="false"
-              className="w-full h-[400px] object-cover rounded-lg"
+              className="w-[110%] h-[110%] object-cover rounded-lg scale-110 hover:scale-100 transition-all duration-500 ease-in-out"
             />
             <div className="absolute bottom-0 left-0 right-0 text-white bg-opacity-50 backdrop-blur-md p-2 rounded-b-lg">
               <Link to={`/product/${product._id}`} className="block">
