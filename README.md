@@ -34,6 +34,27 @@
       ```sh
       cd frontend
       npm run dev
+
+## Screenshots
+- HOME - LANDING PAGE
+   ![Home Page](./assets/Home.png)
+- GENDER COLLECTIONS 
+   ![Gendered C Collection](./assets/GenderedCollection.png)
+- LOGIN PAGE
+   ![Login](./assets/Login.png)
+- REGISTER PAGE
+   ![Register](./assets/Register.png)
+- ADMIN DASHBOARD
+   ![Admin Dashboard](./assets/Admin_Dashboard.png)
+- USER MANAGEMENT PAGE
+   ![User Management](./assets/User_Management.png)
+- PRODUCT MANAGEMENT PAGE
+   ![Product Management](./assets/Product_Management.png)
+- ORDER MANAGEMENT PAGE
+   ![Order Management](./assets/Order_Management.png)
+
+
+
 ## 🔮 Future Enhancements
 - 🏷️ Personalized Recommendations: AI-driven suggestions based on user behavior.
 - 📦 Order & Inventory Management: Improve logistics and stock tracking.
