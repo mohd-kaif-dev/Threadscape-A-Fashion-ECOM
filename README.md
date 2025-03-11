@@ -8,6 +8,7 @@
 - **Express.js** - Backend framework for handling API requests.
 - **React.js** - Frontend framework for a dynamic and intuitive user interface.
 - **Node.js** - Server-side runtime for efficient backend operations.
+- **Redux** - For state management
 
 ## ✨ Features
 - 🔒 **Secure Payment Processing**: Reduces fraudulent transactions by 15% and ensures customer trust.
