@@ -7,38 +7,28 @@ const StripeIntegration = ({ handlePaymentSuccess }) => {
   const { cart } = useSelector((state) => state.cart);
 
   const makePayment = async () => {
-    const stripe = await stripePromise;
-    const res = await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/api/payment/create-stripe-session`,
-      {
-        products: cart.products,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+    try {
+      const stripe = await stripePromise;
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/payment/create-stripe-session`,
+        {
+          products: cart.products,
         },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      const session = res.data;
+      if (session) {
+        handlePaymentSuccess({ transactionId: session.id });
       }
-    );
-
-    const session = res.data;
-    if (session) {
-      handlePaymentSuccess({ transactionId: session.id });
-    }
-
-    const result = await stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
-
-    if (result.error) {
-      console.error("Error:", result.error);
-    }
-  };
-
-  const onStripeSuccess = async (result) => {
-    if (result.error) {
-      console.error("Error:", result.error);
-    } else {
-      handlePaymentSuccess({ transactionId: result.sessionId });
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+    } catch (error) {
+      console.error("Payment Error:", error);
     }
   };
 
@@ -51,7 +41,6 @@ const StripeIntegration = ({ handlePaymentSuccess }) => {
       >
         Pay with Stripe
       </button>
-      <script src="https://js.stripe.com/v3/" onLoad={onStripeSuccess}></script>
     </div>
   );
 };

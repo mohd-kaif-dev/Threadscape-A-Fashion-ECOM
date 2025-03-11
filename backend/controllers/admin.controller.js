@@ -121,6 +121,11 @@ export const createProduct = async (req, res) => {
             user: req.user._id // Reference to the admin user who create the product
         });
 
+        const existingProduct = await Product.findOne({ sku: product.sku });
+        if (existingProduct) {
+            return res.status(400).json({ message: "Product with the same SKU already exists" });
+        }
+
         const createProduct = await product.save();
         res.status(201).json(createProduct);
     } catch (error) {

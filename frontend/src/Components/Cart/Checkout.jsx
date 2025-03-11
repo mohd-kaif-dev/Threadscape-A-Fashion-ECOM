@@ -84,7 +84,6 @@ const Checkout = () => {
         }
       );
       console.log("In the finalize checkout, after");
-      navigate("/order-confirmation");
     } catch (error) {
       console.log(error);
     }

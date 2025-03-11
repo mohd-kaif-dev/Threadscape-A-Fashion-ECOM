@@ -21,6 +21,7 @@ import EditProductPage from "./Components/Admin/EditProductPage";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import PurchaseCancelPage from "./pages/PurchaseCancelPage";
+import CreateProductPage from "./Components/Admin/CreateProduct";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
             <Route path="products" element={<ProductManagement />} />
             <Route path="orders" element={<OrderManagement />} />
             <Route path="products/:id/edit" element={<EditProductPage />} />
+            <Route path="products/create" element={<CreateProductPage />} />
           </Route>
           <Route path="/purchase-cancel" element={<PurchaseCancelPage />} />
         </Routes>

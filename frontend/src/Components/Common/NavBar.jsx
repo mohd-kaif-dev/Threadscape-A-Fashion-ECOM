@@ -9,6 +9,9 @@ import { useState } from "react";
 import CartDrawer from "../Layout/CartDrawer";
 import { IoMdClose } from "react-icons/io";
 import { useSelector } from "react-redux";
+
+import { motion } from "framer-motion";
+
 const NavBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [navDrawer, setNavDrawer] = useState(false);
@@ -34,7 +37,14 @@ const NavBar = () => {
         {/* Left Logo */}
         <div>
           <Link to="/" className="text-2xl font-medium">
-            Fudos
+            <motion.h1
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="bg-clip-text text-4xl text-transparent bg-gradient-to-r from-rabbit-red to-yellow-500 shadow font-[LogoFont]"
+            >
+              ThreadScape
+            </motion.h1>
           </Link>
         </div>
         {/* Center - Navigation Links */}
@@ -69,7 +79,7 @@ const NavBar = () => {
           {user?.role === "admin" && (
             <Link
               to="/admin"
-              className="block bg-black text-white text-xs items-center rounded font-semibold hover:bg-gray-700 px-2 py-1"
+              className="block bg-rabbit-red text-white text-xs items-center rounded font-semibold hover:bg-zinc-700 px-2 py-1 transition-all duration-400"
             >
               ADMIN
             </Link>

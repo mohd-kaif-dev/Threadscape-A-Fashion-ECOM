@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchAdminProducts } from "../redux/slices/adminProductSlice";
@@ -6,6 +6,7 @@ import { fetchAllOrders } from "../redux/slices/adminOrderSlice";
 
 const AdminHomePage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     products,
@@ -77,7 +78,11 @@ const AdminHomePage = () => {
             <tbody>
               {orders.length > 0 ? (
                 orders.map((order) => (
-                  <tr key={order._id}>
+                  <tr
+                    key={order._id}
+                    onClick={() => navigate("/admin/orders")}
+                    className="cursor-pointer"
+                  >
                     <td className="px-4 py-2">{order._id}</td>
                     <td className="px-4 py-2">{order.user?.name}</td>
                     <td className="px-4 py-2">

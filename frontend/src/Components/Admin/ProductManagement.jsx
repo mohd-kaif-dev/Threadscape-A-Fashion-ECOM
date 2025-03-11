@@ -6,6 +6,7 @@ import {
   deleteProduct,
   fetchAdminProducts,
 } from "../../redux/slices/adminProductSlice";
+import { Plus } from "lucide-react";
 
 const ProductManagement = () => {
   const { products, loading, error } = useSelector(
@@ -25,7 +26,12 @@ const ProductManagement = () => {
   if (error) return <p>Error : {error}</p>;
   return (
     <div className="p-6 max-w-7xl mx-auto">
-      <h1 className="text-2xl mb-6 font-bold">Product Management</h1>
+      <div className="flex justify-between">
+        <h1 className="text-2xl mb-6 font-bold">Product Management</h1>
+        <Link to="/admin/products/create">
+          <Plus className="w-8 h-8 hover:scale-110 transition-all duration-500 border-4 border-zinc-800 rounded-lg mr-8" />
+        </Link>
+      </div>
       <div className="overflow-x-auto shadow-md sm:rounded-lg">
         <table className="min-w-full text-left text-zinc-500">
           <thead className="bg-zinc-300 text-xs uppercase text-zinc-700">

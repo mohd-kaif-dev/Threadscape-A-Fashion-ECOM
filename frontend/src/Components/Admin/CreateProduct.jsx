@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { fetchProductDetails } from "../../redux/slices/productSlice";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { updateProduct } from "../../redux/slices/adminProductSlice";
+import { createProduct } from "../../redux/slices/adminProductSlice";
 import { toast } from "sonner";
 import { X } from "lucide-react";
 
-const EditProductPage = () => {
-  const { id } = useParams();
+const CreateProductPage = () => {
   const dispatch = useDispatch();
-  const { selectedProduct, loading, error } = useSelector(
-    (state) => state.products
-  );
+
   const [productData, setProductData] = useState({
     name: "",
     description: "",
@@ -78,8 +74,6 @@ const EditProductPage = () => {
         }
       );
 
-      console.log("Data :", data);
-
       setProductData((prevData) => ({
         ...prevData,
         images: [
@@ -97,27 +91,17 @@ const EditProductPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateProduct({ id, productData }));
-    toast.success("Product updated successfully!");
+    dispatch(createProduct(productData));
+    toast.success("Product created successfully!");
+    setProductData({
+      images: [],
+    });
   };
-
-  useEffect(() => {
-    if (id) {
-      dispatch(fetchProductDetails(id));
-    }
-  }, [dispatch, id]);
-
-  useEffect(() => {
-    if (selectedProduct) {
-      setProductData(selectedProduct);
-    }
-  }, [selectedProduct]);
 
   return (
     <div className="max-w-5xl mx-auto p-6 shadow-md rounded-md">
-      <h2 className="text-3xl font-semibold mb-6">Edit Product</h2>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
+      <h2 className="text-3xl font-semibold mb-6">Create Product</h2>
+
       <form onSubmit={handleSubmit}>
         {/* Name */}
         <div className="mb-4">
@@ -225,8 +209,10 @@ const EditProductPage = () => {
             onChange={handleChange}
             className="w-full p-2 border border-zinc-300 rounded-md"
           >
+            <option value="">Select Gender</option>
             <option value="Men">Men</option>
             <option value="Women">Women</option>
+            <option value="Unisex">Unisex</option>
           </select>
         </div>
         {/* Category */}
@@ -244,6 +230,7 @@ const EditProductPage = () => {
             onChange={handleChange}
             className="w-full p-2 border border-zinc-300 rounded-md"
           >
+            <option value="">Select Category</option>
             <option value="Top Wear">Top Wear</option>
             <option value="Bottom Wear">Bottom Wear</option>
           </select>
@@ -284,7 +271,6 @@ const EditProductPage = () => {
             required
           />
         </div>
-
         {/* Collections */}
         <div className="mb-4">
           <label
@@ -383,7 +369,7 @@ const EditProductPage = () => {
           type="submit"
           className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-greeen-700 transition-colors"
         >
-          Update Product
+          Add Product
         </button>
       </form>
       <div className="text-center mt-4">
@@ -395,4 +381,4 @@ const EditProductPage = () => {
   );
 };
 
-export default EditProductPage;
+export default CreateProductPage;

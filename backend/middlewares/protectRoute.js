@@ -5,7 +5,7 @@ export const protectRoute = async (req, res, next) => {
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
         try {
             token = req.headers.authorization.split(" ")[1];
-            // console.log(token)
+
 
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             if (!decoded) return res.status(401).json({ message: "Invalid Token" });
@@ -14,7 +14,7 @@ export const protectRoute = async (req, res, next) => {
 
             next();
         } catch (error) {
-            console.log("Token Verification failed")
+            console.log("Token Verification failed:", error)
             res.status(401).json({ message: "Not authorized: Token Failed" });
         }
     } else {

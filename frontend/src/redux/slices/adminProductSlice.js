@@ -26,6 +26,7 @@ export const fetchAdminProducts = createAsyncThunk(
 export const createProduct = createAsyncThunk(
     "adminProducts/createProduct",
     async (productData, { rejectWithValue }) => {
+        console.log("In createProduct thunk", productData)
         try {
             const response = await axios.post(
                 `${import.meta.env.VITE_BACKEND_URL}/api/admin/products`,

@@ -30,8 +30,8 @@ const AdminSidebar = ({ toggleSidebar }) => {
   return (
     <div className="p-6">
       <div className="mb-6">
-        <Link to="/admin" className="text-2xl font-medium">
-          Fudos
+        <Link to="/admin" className="text-5xl font-medium font-[LogoFont]">
+          ThreadScape
         </Link>
       </div>
       <h2 className="text-lg font-semibold mb-4">Admin Dashboard</h2>
