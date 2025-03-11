@@ -199,7 +199,6 @@ export const deleteProduct = async (req, res) => {
         const deletedProduct = await Product.findByIdAndDelete(id);
 
         if (deletedProduct) {
-            await deletedProduct.deleteOne();
             res.status(200).json({ message: "Product deleted successfully" });
         } else {
             res.status(404).json({ message: "Product not found" });
@@ -214,7 +213,7 @@ export const deleteProduct = async (req, res) => {
 export const getAllOrders = async (req, res) => {
     try {
 
-        const orders = await Order.find({}).populate("user", "name email");
+        const orders = await Order.find({}).populate("user", "name email").sort({ createdAt: -1 });
         if (!orders) return res.status(404).json({ message: "No orders found" });
 
         res.status(200).json(orders);

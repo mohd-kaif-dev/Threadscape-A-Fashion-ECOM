@@ -59,6 +59,19 @@ const Home = () => {
       {/* Featured Collection */}
       <FeaturedCollection />
       <FeaturesSection />
+      <div
+        className="container mx-auto p-2 flex justify-center items-center"
+        onClick={() => {
+          window.scrollTo({
+            top: 0, // Scroll to the top of the page
+            behavior: "smooth", // Enable smooth scrolling
+          });
+        }}
+      >
+        <button className="font-bold text-zinc-800 underline cursor-pointer">
+          Back To Top
+        </button>
+      </div>
     </main>
   );
 };

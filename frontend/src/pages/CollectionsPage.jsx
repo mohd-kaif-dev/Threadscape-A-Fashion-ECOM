@@ -42,6 +42,10 @@ const CollectionsPage = () => {
   useEffect(() => {
     dispatch(fetchProductsByFilters({ collection, ...queryParams }));
   }, [dispatch, collection, searchParams]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="flex flex-col lg:flex-row">
       {/* Mobile Filter Button */}

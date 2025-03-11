@@ -113,6 +113,10 @@ const EditProductPage = () => {
     }
   }, [selectedProduct]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="max-w-5xl mx-auto p-6 shadow-md rounded-md">
       <h2 className="text-3xl font-semibold mb-6">Edit Product</h2>

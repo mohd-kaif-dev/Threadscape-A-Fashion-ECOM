@@ -1,21 +1,24 @@
 import { useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   deleteProduct,
   fetchAdminProducts,
 } from "../../redux/slices/adminProductSlice";
 import { Plus } from "lucide-react";
+import { toast } from "sonner";
 
 const ProductManagement = () => {
   const { products, loading, error } = useSelector(
     (state) => state.adminProducts
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleDeleteProduct = (productId) => {
     dispatch(deleteProduct(productId));
+    toast.success("Product deleted successfully");
   };
 
   useEffect(() => {
@@ -47,7 +50,10 @@ const ProductManagement = () => {
               products.map((product) => (
                 <tr
                   key={product._id}
-                  className="border-b border-zinc-200 cursor-pointer"
+                  onDoubleClick={() =>
+                    navigate(`/admin/products/${product._id}/edit`)
+                  }
+                  className="border-b border-zinc-200 cursor-pointer select-none"
                 >
                   <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
                     {product.name}

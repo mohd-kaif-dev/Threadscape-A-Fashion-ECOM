@@ -46,7 +46,10 @@ const OrderManagement = () => {
             {orders.length > 0 ? (
               orders.map((order, index) => (
                 <tr key={index} className="hover:bg-zinc-300">
-                  <td className="px-4 py-2 font-medium text-zinc-900 whitespace-nowrap">
+                  <td
+                    onClick={() => navigate(`${order._id}`)}
+                    className="px-4 py-2 font-medium text-zinc-900 whitespace-nowrap"
+                  >
                     #{order._id}
                   </td>
                   <td className="px-4 py-2">{order.user?.name}</td>

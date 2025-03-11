@@ -67,6 +67,10 @@ const ProductDetails = ({ productId }) => {
     }
   }, [selectedProduct]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error}</p>;
 

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { createProduct } from "../../redux/slices/adminProductSlice";
 import { toast } from "sonner";
@@ -372,11 +371,6 @@ const CreateProductPage = () => {
           Add Product
         </button>
       </form>
-      <div className="text-center mt-4">
-        <Link to={`/product/${productData._id}`} className={"text-blue-500"}>
-          View Product
-        </Link>
-      </div>
     </div>
   );
 };

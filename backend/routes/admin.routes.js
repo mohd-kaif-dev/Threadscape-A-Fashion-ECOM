@@ -1,6 +1,7 @@
 import express from "express";
 import { protectRoute, checkAdmin } from "../middlewares/protectRoute.js"
 import { addUser, getAdminUsers, updateUser, deleteUser, getAllProducts, createProduct, deleteProduct, updateProduct, getAllOrders, updateOrder, deleteOrder } from "../controllers/admin.controller.js";
+import { getOrderDetails } from "../controllers/order.controller.js";
 
 const router = express.Router();
 
@@ -50,6 +51,8 @@ router.delete("/products/delete/:id", protectRoute, checkAdmin, deleteProduct)
 // @desc Get all orders (Admin Only)
 // @access Private/Admin
 router.get("/orders", protectRoute, checkAdmin, getAllOrders);
+
+
 
 // @route PUT /api/admin/orders/:id
 // @desc Update an order (Admin Only)

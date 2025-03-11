@@ -54,6 +54,7 @@ function App() {
             <Route path="users" element={<UserManagement />} />
             <Route path="products" element={<ProductManagement />} />
             <Route path="orders" element={<OrderManagement />} />
+            <Route path="orders/:id" element={<OrderDetailsPage />} />
             <Route path="products/:id/edit" element={<EditProductPage />} />
             <Route path="products/create" element={<CreateProductPage />} />
           </Route>

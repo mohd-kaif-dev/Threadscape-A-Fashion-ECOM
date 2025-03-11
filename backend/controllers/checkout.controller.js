@@ -20,14 +20,26 @@ export const checkout = async (req, res) => {
         });
         // console.log(`Checkout created for user: ${req.user._id}`);
 
-        res.status(200).json(newCheckout);
+        res.status(201).json(newCheckout);
     } catch (error) {
         console.error("Error in checkout controller : ", error);
         res.status(500).json({ message: "Internal Server Error" })
     }
 }
 
+export const getCheckout = async (req, res) => {
+    try {
 
+        const checkout = await Checkout.findById(req.params.id);
+        if (!checkout) return res.status(404).json({ message: "Checkout not found" });
+
+        res.status(200).json(checkout);
+
+    } catch (error) {
+        console.error("Error in getCheckout controller : ", error);
+        res.status(500).json({ message: "Internal Server Error" })
+    }
+}
 
 export const successPayment = async (req, res) => {
     const { paymentStatus, paymentDetails } = req.body;
@@ -40,17 +52,15 @@ export const successPayment = async (req, res) => {
             checkout.paymentStatus = paymentStatus;
             checkout.paymentDetails = paymentDetails;
             checkout.paidAt = Date.now();
-
             await checkout.save();
-
-            res.status(200).json(checkout);
+            return res.status(200).json(checkout);
         } else {
-            res.status(400).json({ message: "Invalid Payment Status" })
+            return res.status(400).json({ message: "Invalid Payment Status" })
         }
 
     } catch (error) {
         console.error("Error in successPayment controller : ", error);
-        res.status(500).json({ message: "Internal Server Error" })
+        return res.status(500).json({ message: "Internal Server Error" })
     }
 }
 
@@ -83,11 +93,11 @@ export const finalizePaymentandCreateOrder = async (req, res) => {
             // Delete cart items
             await Cart.findOneAndDelete({ user: checkout.user });
 
-            res.status(201).json(finalOrder);
+            return res.status(201).json(finalOrder);
         } else if (checkout.isFinalized) {
-            res.status(400).json({ message: "Checkout is already finalized" });
+            return res.status(400).json({ message: "Checkout is already finalized" });
         } else {
-            res.status(400).json({ message: "Checkout is not paid yet" });
+            return res.status(400).json({ message: "Checkout is not paid yet" });
         }
     } catch (error) {
         console.log("Error in finalizePaymentandCreateOrder controller : ", error);

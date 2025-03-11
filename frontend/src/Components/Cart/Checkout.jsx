@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PayPalButton from "./PayPalButton";
-import StripeButton from "./StripeButton";
 import { useDispatch, useSelector } from "react-redux";
 import { createCheckout } from "../../redux/slices/checkoutSlice";
 import axios from "axios";
@@ -15,7 +13,6 @@ const Checkout = () => {
   const { user } = useSelector((state) => state.auth);
 
   const [checkoutId, setcheckoutId] = useState(false);
-  // console.log(cart);
 
   const [shippingAddress, setShippingAddress] = useState({
     firstName: "",
@@ -38,18 +35,15 @@ const Checkout = () => {
           totalPrice: cart.totalPrice.toFixed(2),
         })
       );
-      // console.log(res);
       if (res.payload && res.payload._id) {
         setcheckoutId(res.payload._id); // Set checkout ID if checkout was successful
       }
+      localStorage.setItem("checkoutId", res.payload._id);
     }
-
-    // setIsPayPalButtonVisible(true);
   };
 
   const handlePaymentSuccess = async (details) => {
     try {
-      console.log("Before handle payment");
       await axios.put(
         `${import.meta.env.VITE_BACKEND_URL}/api/checkout/${checkoutId}/pay`,
         {
@@ -62,16 +56,14 @@ const Checkout = () => {
           },
         }
       );
-      console.log("In the handle Payment");
       await handleFinalizeCheckout(checkoutId); // Finalize checkout if payment is successful
     } catch (error) {
-      console.log(error);
+      console.log("Error in HandlePayment Success", error);
     }
   };
 
   const handleFinalizeCheckout = async (checkoutId) => {
     try {
-      console.log("In the finalize checkout, before");
       await axios.post(
         `${
           import.meta.env.VITE_BACKEND_URL
@@ -83,20 +75,10 @@ const Checkout = () => {
           },
         }
       );
-      console.log("In the finalize checkout, after");
     } catch (error) {
-      console.log(error);
+      console.log("Error in Finalize Checkout", error);
     }
   };
-
-  // const handlePaymentError = (error) => {
-  //   // Handle payment error
-  //   console.error("Payment error:", error);
-  // };
-
-  // const calculateTotalPrice = () => {
-  //   return cart.products.reduce((total, product) => total + product.price, 0);
-  // };
 
   useEffect(() => {
     if (!cart || !cart.products || cart.products.length === 0) {
@@ -269,16 +251,6 @@ const Checkout = () => {
               </button>
             ) : (
               <div className="flex flex-col">
-                <h3 className="text-lg mb-4">Pay with PayPal</h3>
-                <PayPalButton
-                  amount={cart.totalPrice.toFixed(2)}
-                  onSuccess={handlePaymentSuccess}
-                />
-
-                <StripeButton
-                  amount={cart.totalPrice}
-                  handleSuccessPayment={handlePaymentSuccess}
-                />
                 <StripeIntegration
                   handlePaymentSuccess={handlePaymentSuccess}
                   checkoutId={checkoutId}

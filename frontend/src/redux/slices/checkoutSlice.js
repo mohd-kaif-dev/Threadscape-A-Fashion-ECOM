@@ -18,7 +18,7 @@ export const createCheckout = createAsyncThunk(
 
             return response.data;
         } catch (error) {
-            console.error(error);
+            console.error("Error in the createCheckoutThunk", error);
             rejectWithValue(error.response.data);
         }
     }
@@ -38,7 +38,7 @@ export const getCheckout = createAsyncThunk(
             );
             return response.data;
         } catch (error) {
-            console.error(error);
+            console.error("Error in the getCheckoutThunk", error);
             rejectWithValue(error.response.data);
         }
     })

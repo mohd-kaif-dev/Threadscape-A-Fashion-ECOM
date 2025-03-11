@@ -1,29 +1,33 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../redux/slices/cartSlice";
-import { useNavigate } from "react-router-dom";
-// import { getCheckout } from "../redux/slices/checkoutSlice";
+import { Link } from "react-router-dom";
+import { getCheckout } from "../redux/slices/checkoutSlice";
 import Confetti from "react-confetti";
 const OrderConfirmationPage = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { checkout } = useSelector((state) => state.checkout);
+
+  let checkoutId = localStorage.getItem("checkoutId");
+
+  console.log("checkoutId : ", checkoutId);
+
+  console.log("checkout :", checkout);
+
   const calculateEstimatedDelivery = (createdAt) => {
     const orderDate = new Date(createdAt);
     orderDate.setDate(orderDate.getDate() + 7); // Add 7 days to the order date
     return orderDate.toLocaleDateString();
   };
 
-  console.log("In OrderConfirmationPage", checkout);
+  console.log("In OrderConfirmationPage");
   useEffect(() => {
-    dispatch(clearCart());
-    localStorage.removeItem("cart");
-    if (checkout && checkout._id) {
-      console.log(checkout);
-    } else {
-      navigate("/my-orders");
+    if (checkoutId) {
+      dispatch(getCheckout(checkoutId));
+      dispatch(clearCart());
+      localStorage.removeItem("cart");
     }
-  }, [checkout, dispatch, navigate]);
+  }, [dispatch, checkoutId]);
 
   // useEffect(() => {
   //   dispatch(getCheckout());
@@ -53,6 +57,7 @@ const OrderConfirmationPage = () => {
                 Order Date : {new Date(checkout.createdAt).toLocaleDateString()}
               </p>
             </div>
+
             {/* Estimated Delivery */}
             <div>
               <p className="text-emerald-700 text-sm font-semibold">
@@ -61,10 +66,15 @@ const OrderConfirmationPage = () => {
               </p>
             </div>
           </div>
+          <div className="mb-8">
+            <h2 className=" text-lg font-semibold">
+              Order Total : ${checkout.totalPrice}
+            </h2>
+          </div>
           {/* Checkout Items */}
           <h1 className="text-lg font-semibold mb-4">Ordered Items</h1>
           <div className="mb-8 max-h-80  overflow-y-scroll">
-            {checkout.checkoutItems.map((item, index) => (
+            {checkout?.checkoutItems?.map((item, index) => (
               <div key={index} className="flex items-center mb-2 ">
                 <img
                   src={item.image}
@@ -90,7 +100,7 @@ const OrderConfirmationPage = () => {
             ))}
           </div>
           {/* Payment and Delivery Info */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
             {/* Payment Info */}
             <div>
               <h4 className="text-lg font-semibold mb-2 border-b border-gray-500">
@@ -109,14 +119,24 @@ const OrderConfirmationPage = () => {
                 Delivery
               </h4>
               <p className="text-sm text-gray-600">
-                {checkout.shippingAddress.address},{" "}
-                {checkout.shippingAddress.city},{" "}
+                {checkout.shippingAddress?.address},{" "}
+                {checkout.shippingAddress?.city},{" "}
               </p>
               <p className="text-sm text-gray-600">
-                {checkout.shippingAddress.state},{" "}
-                {checkout.shippingAddress.country}
+                {checkout.shippingAddress?.state},{" "}
+                {checkout.shippingAddress?.country}
               </p>
             </div>
+          </div>
+          <div className=" text-center font-semibold mb-2 border-t border-zinc-800 py-6">
+            <Link to="/">
+              <button
+                onClick={() => localStorage.removeItem("checkoutId")}
+                className="bg-emerald-700 text-white px-4 py-2 rounded-md"
+              >
+                Continue Shopping
+              </button>
+            </Link>
           </div>
         </div>
       )}

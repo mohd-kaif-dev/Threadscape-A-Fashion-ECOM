@@ -1,7 +1,7 @@
 import express from "express";
 
 import { protectRoute } from "../middlewares/protectRoute.js";
-import { checkout, finalizePaymentandCreateOrder, successPayment } from "../controllers/checkout.controller.js";
+import { checkout, finalizePaymentandCreateOrder, getCheckout, successPayment } from "../controllers/checkout.controller.js";
 
 const router = express.Router();
 
@@ -9,11 +9,6 @@ const router = express.Router();
 // @desc Create a new checkout session
 // @access Private
 router.post("/", protectRoute, checkout);
-
-// @route get api/checkout/:id
-// @desc Get checkout details
-// @access Private
-
 
 //@route PUT api/checkout/:id/pay
 // @desc Update checkout to mark as paid after successful payment
@@ -24,4 +19,10 @@ router.put("/:id/pay", protectRoute, successPayment);
 // @desc Finalize the checkout and create an order after successful payment
 // @access Private  
 router.post("/:id/finalize", protectRoute, finalizePaymentandCreateOrder)
+
+// @route get api/checkout
+// @desc Get checkout details
+// @access Private
+router.get("/:id", protectRoute, getCheckout);
+
 export default router
