@@ -8,6 +8,7 @@
 - **Express.js** - Backend framework for handling API requests.
 - **React.js** - Frontend framework for a dynamic and intuitive user interface.
 - **Node.js** - Server-side runtime for efficient backend operations.
+- **Redux** - For state management
 
 ## ✨ Features
 - 🔒 **Secure Payment Processing**: Reduces fraudulent transactions by 15% and ensures customer trust.
@@ -34,6 +35,27 @@
       ```sh
       cd frontend
       npm run dev
+
+## Screenshots
+- HOME - LANDING PAGE
+   ![Home Page](./assets/Home.png)
+- GENDER COLLECTIONS 
+   ![Gendered C Collection](./assets/GenderedCollection.png)
+- LOGIN PAGE
+   ![Login](./assets/Login.png)
+- REGISTER PAGE
+   ![Register](./assets/Register.png)
+- ADMIN DASHBOARD
+   ![Admin Dashboard](./assets/Admin_Dashboard.png)
+- USER MANAGEMENT PAGE
+   ![User Management](./assets/User_Management.png)
+- PRODUCT MANAGEMENT PAGE
+   ![Product Management](./assets/Product_Management.png)
+- ORDER MANAGEMENT PAGE
+   ![Order Management](./assets/Order_Management.png)
+
+
+
 ## 🔮 Future Enhancements
 - 🏷️ Personalized Recommendations: AI-driven suggestions based on user behavior.
 - 📦 Order & Inventory Management: Improve logistics and stock tracking.
