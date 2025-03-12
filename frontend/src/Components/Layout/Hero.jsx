@@ -30,7 +30,7 @@ const Hero = () => {
           <motion.p
             initial={{ opacity: 0, y: -40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
             className="text-sm tracking-tighter md:text-lg mb-6"
           >
             Explore our vacation-ready outfits with fast worldwide shipping.
@@ -38,7 +38,7 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
           >
             <Link
               to="#"

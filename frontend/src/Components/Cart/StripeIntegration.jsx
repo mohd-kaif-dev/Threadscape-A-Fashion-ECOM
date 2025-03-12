@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
-const StripeIntegration = ({ handlePaymentSuccess }) => {
+const StripeIntegration = () => {
   const { cart } = useSelector((state) => state.cart);
 
   const makePayment = async () => {
@@ -23,18 +23,11 @@ const StripeIntegration = ({ handlePaymentSuccess }) => {
       const session = res.data;
       if (session) {
         console.log("Runs");
-        handlePaymentSuccess({ transactionId: session.id });
+        localStorage.setItem("stripeId", session.id);
       }
-      const result = await stripe.redirectToCheckout({
+      await stripe.redirectToCheckout({
         sessionId: session.id,
       });
-
-      console.log("In the Stripe Integration: ", result);
-      localStorage.setItem("Stripe", result);
-
-      if (result.error) {
-        console.error(result.error.message);
-      }
     } catch (error) {
       console.error("Payment Error:", error);
     }

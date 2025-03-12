@@ -14,6 +14,8 @@ import subscribeRoutes from "./routes/subscriber.routes.js"
 
 import paymentRoutes from "./routes/payment.routes.js"
 
+import analyticsRoutes from "./routes/analytics.routes.js"
+
 import adminRoutes from "./routes/admin.routes.js"
 
 const app = express();
@@ -36,11 +38,17 @@ app.use("/api/orders", orderRoutes)
 app.use("/api/upload", uploadRoutes)
 app.use("/api/subscribe", subscribeRoutes)
 
+
+// Analytics Route
+app.use("/api/admin/analytics", analyticsRoutes)
+
 // ADMIN ROUTES
 app.use("/api/admin", adminRoutes)
 
 // PAYMENT ROUTE
 app.use("/api/payment", paymentRoutes)
+
+
 
 
 

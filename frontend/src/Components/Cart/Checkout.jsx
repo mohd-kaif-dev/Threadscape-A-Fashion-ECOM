@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createCheckout } from "../../redux/slices/checkoutSlice";
-import axios from "axios";
 import StripeIntegration from "./StripeIntegration";
 
 const Checkout = () => {
@@ -36,47 +35,9 @@ const Checkout = () => {
         })
       );
       if (res.payload && res.payload._id) {
-        setcheckoutId(res.payload._id); // Set checkout ID if checkout was successful
+        setcheckoutId(res.payload._id || localStorage.getItem("checkoutId")); // Set checkout ID if checkout was successful
       }
       localStorage.setItem("checkoutId", res.payload._id);
-    }
-  };
-
-  const handlePaymentSuccess = async (details) => {
-    try {
-      await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/api/checkout/${checkoutId}/pay`,
-        {
-          paymentStatus: "paid",
-          paymentDetails: details,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-          },
-        }
-      );
-      await handleFinalizeCheckout(checkoutId); // Finalize checkout if payment is successful
-    } catch (error) {
-      console.log("Error in HandlePayment Success", error);
-    }
-  };
-
-  const handleFinalizeCheckout = async (checkoutId) => {
-    try {
-      await axios.post(
-        `${
-          import.meta.env.VITE_BACKEND_URL
-        }/api/checkout/${checkoutId}/finalize`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-          },
-        }
-      );
-    } catch (error) {
-      console.log("Error in Finalize Checkout", error);
     }
   };
 
@@ -251,10 +212,7 @@ const Checkout = () => {
               </button>
             ) : (
               <div className="flex flex-col">
-                <StripeIntegration
-                  handlePaymentSuccess={handlePaymentSuccess}
-                  checkoutId={checkoutId}
-                />
+                <StripeIntegration />
               </div>
             )}
           </div>

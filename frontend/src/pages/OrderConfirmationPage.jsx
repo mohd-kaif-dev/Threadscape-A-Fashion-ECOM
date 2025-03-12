@@ -4,15 +4,14 @@ import { clearCart } from "../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
 import { getCheckout } from "../redux/slices/checkoutSlice";
 import Confetti from "react-confetti";
+import axios from "axios";
+
 const OrderConfirmationPage = () => {
   const dispatch = useDispatch();
   const { checkout } = useSelector((state) => state.checkout);
 
-  let checkoutId = localStorage.getItem("checkoutId");
-
-  console.log("checkoutId : ", checkoutId);
-
-  console.log("checkout :", checkout);
+  const checkoutId = localStorage.getItem("checkoutId");
+  const stripeId = localStorage.getItem("stripeId");
 
   const calculateEstimatedDelivery = (createdAt) => {
     const orderDate = new Date(createdAt);
@@ -20,13 +19,54 @@ const OrderConfirmationPage = () => {
     return orderDate.toLocaleDateString();
   };
 
-  console.log("In OrderConfirmationPage");
-  useEffect(() => {
-    if (checkoutId) {
-      dispatch(getCheckout(checkoutId));
-      dispatch(clearCart());
-      localStorage.removeItem("cart");
+  const handlePaymentSuccess = async (details, checkoutId) => {
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_BACKEND_URL}/api/checkout/${checkoutId}/pay`,
+        {
+          paymentStatus: "paid",
+          paymentDetails: details,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      await handleFinalizeCheckout(checkoutId); // Finalize checkout if payment is successful
+    } catch (error) {
+      console.log("Error in HandlePayment Success", error);
     }
+  };
+
+  const handleFinalizeCheckout = async (checkoutId) => {
+    try {
+      await axios.post(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/checkout/${checkoutId}/finalize`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.log("Error in Finalize Checkout", error);
+    }
+  };
+
+  useEffect(() => {
+    const orderSuccess = async () => {
+      if (checkoutId) {
+        await handlePaymentSuccess(stripeId, checkoutId);
+        dispatch(getCheckout(checkoutId));
+        dispatch(clearCart());
+        localStorage.removeItem("cart");
+      }
+    };
+    orderSuccess();
   }, [dispatch, checkoutId]);
 
   // useEffect(() => {

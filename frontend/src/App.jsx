@@ -45,6 +45,7 @@ function App() {
               path="/order-confirmation"
               element={<OrderConfirmationPage />}
             />
+            <Route path="/purchase-cancel" element={<PurchaseCancelPage />} />
             <Route path="orders/:id" element={<OrderDetailsPage />} />
             <Route path="my-orders" element={<MyOrderPage />} />
           </Route>
@@ -58,7 +59,6 @@ function App() {
             <Route path="products/:id/edit" element={<EditProductPage />} />
             <Route path="products/create" element={<CreateProductPage />} />
           </Route>
-          <Route path="/purchase-cancel" element={<PurchaseCancelPage />} />
         </Routes>
       </BrowserRouter>
     </Provider>

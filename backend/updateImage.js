@@ -1,6 +1,6 @@
 import fs from "fs"
 import axios from "axios"
-import { products } from "./data/testData.js";
+import { products } from "./data/ProductData.js";
 
 const UNSPLASH_API_KEY = ""; // Replace with your Unsplash API key
 

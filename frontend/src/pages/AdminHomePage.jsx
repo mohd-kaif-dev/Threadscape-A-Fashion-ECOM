@@ -1,24 +1,21 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchAdminProducts } from "../redux/slices/adminProductSlice";
 import { fetchAllOrders } from "../redux/slices/adminOrderSlice";
+import AnalyticsTab from "../Components/Admin/AnalyticsTab";
 
 const AdminHomePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const {
-    products,
-    loading: productLoading,
-    error: productError,
-  } = useSelector((state) => state.adminProducts);
+  const { loading: productLoading, error: productError } = useSelector(
+    (state) => state.adminProducts
+  );
   const {
     orders,
     loading: orderLoading,
     error: orderError,
-    totalOrders,
-    totalSales,
   } = useSelector((state) => state.adminOrders);
 
   useEffect(() => {
@@ -29,7 +26,7 @@ const AdminHomePage = () => {
   if (productError || orderError)
     return <div>Error: {productError || orderError}</div>;
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto px-6">
       <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
       {productLoading || orderLoading ? (
         <p>Loading...</p>
@@ -38,34 +35,12 @@ const AdminHomePage = () => {
       ) : orderError ? (
         <p className="text-red-500">Error fetching orders: {orderError}</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="p-4 shadow-md rounded-lg">
-            <h2 className="text-xl font-semibold">Revenue</h2>
-            <p className="text-2xl">${parseFloat(totalSales).toFixed(2)}</p>
-          </div>
-          <div className="p-4 shadow-md rounded-lg">
-            <h2 className="text-xl font-semibold">Total Orders</h2>
-            <p className="text-2xl">{totalOrders}</p>
-            <Link to="/admin/orders" className="text-blue-500 hover:underline">
-              Manage Orders
-            </Link>
-          </div>
-          <div className="p-4 shadow-md rounded-lg">
-            <h2 className="text-xl font-semibold">Total Products</h2>
-            <p className="text-2xl">{products.length}</p>
-            <Link
-              to="/admin/products"
-              className="text-blue-500 hover:underline"
-            >
-              Manage Products
-            </Link>
-          </div>
-        </div>
+        <AnalyticsTab />
       )}
 
       <div className="mt-6">
         <h2 className="text-2xl font-semibold mb-4">Latest Orders</h2>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto rounded-xl">
           <table className="min-w-full text-left text-zinc-500">
             <thead className="bg-zinc-200 text-xs uppercase text-zinc-700">
               <tr>
@@ -75,7 +50,7 @@ const AdminHomePage = () => {
                 <th className="px-4 py-2">Status</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="bg-zinc-100">
               {orders.length > 0 ? (
                 orders.map((order) => (
                   <tr
