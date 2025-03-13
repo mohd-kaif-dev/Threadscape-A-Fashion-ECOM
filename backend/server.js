@@ -23,8 +23,19 @@ dotenv.config();
 
 const PORT = process.env.PORT || 9000;
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://threadscape-kai.vercel.app'); // Allow only the production frontend
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true'); // If cookies or credentials are used
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+    next();
+});
 
-app.use(cors({ origin: `${process.env.FRONTEND_URL}` }));
+
+app.use(cors({ origin: process.env.FRONTEND_URL || 'https://threadscape-kai.vercel.app' }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
