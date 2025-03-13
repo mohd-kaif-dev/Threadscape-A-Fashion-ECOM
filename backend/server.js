@@ -24,7 +24,7 @@ dotenv.config();
 const PORT = process.env.PORT || 9000;
 
 
-app.use(cors({ origin: "*" }));
+app.use(cors({ origin: 'https://threadscape-kai.vercel.app' }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

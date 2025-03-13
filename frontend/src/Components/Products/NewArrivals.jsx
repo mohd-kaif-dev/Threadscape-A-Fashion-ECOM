@@ -69,7 +69,7 @@ const NewArrivals = () => {
         );
         setNewArrivals(response.data);
       } catch (error) {
-        console.error(error);
+        console.error("Error in Fetching New Arrivals", error);
       }
     };
 
@@ -114,25 +114,29 @@ const NewArrivals = () => {
         }`}
         style={{ scrollbarWidth: "none", scrollBehavior: "smooth" }}
       >
-        {newArrivals?.map((product) => (
-          <div
-            key={product._id}
-            className="min-w-[100%] sm:min-w-[50%] lg:min-w-[30%] rounded-lg relative snap-center md:snap-none container h-[400px] overflow-hidden shadow-2xl shadow-black"
-          >
-            <img
-              src={product.images[0]?.url}
-              alt={product.images[0]?.altText || product.name}
-              draggable="false"
-              className="w-[110%] h-[110%] object-cover rounded-lg scale-110 hover:scale-100 transition-all duration-500 ease-in-out"
-            />
-            <div className="absolute bottom-0 left-0 right-0 text-white bg-black/50 backdrop-blur-md p-2 rounded-b-lg">
-              <Link to={`/product/${product._id}`} className="block">
-                <h4 className="font-medium">{product.name}</h4>
-                <p className="text-sm mt-1">${product.price}</p>
-              </Link>
+        {newArrivals.length > 0 ? (
+          newArrivals?.map((product) => (
+            <div
+              key={product._id}
+              className="min-w-[100%] sm:min-w-[50%] lg:min-w-[30%] rounded-lg relative snap-center md:snap-none container h-[400px] overflow-hidden shadow-2xl shadow-black"
+            >
+              <img
+                src={product.images[0]?.url}
+                alt={product.images[0]?.altText || product.name}
+                draggable="false"
+                className="w-[110%] h-[110%] object-cover rounded-lg scale-110 hover:scale-100 transition-all duration-500 ease-in-out"
+              />
+              <div className="absolute bottom-0 left-0 right-0 text-white bg-black/50 backdrop-blur-md p-2 rounded-b-lg">
+                <Link to={`/product/${product._id}`} className="block">
+                  <h4 className="font-medium">{product.name}</h4>
+                  <p className="text-sm mt-1">${product.price}</p>
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p className="text-xl text-center">No Products Found</p>
+        )}
       </div>
     </section>
   );

@@ -41,7 +41,7 @@ const NavBar = () => {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="bg-clip-text text-4xl text-transparent bg-gradient-to-r from-rabbit-red to-yellow-500 shadow font-[LogoFont]"
+              className="bg-clip-text text-4xl text-transparent bg-gradient-to-r from-rabbit-red to-yellow-500 font-[LogoFont]"
             >
               ThreadScape
             </motion.h1>
