@@ -23,6 +23,8 @@ dotenv.config();
 
 const PORT = process.env.PORT || 9000;
 
+connectDB();
+
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', 'https://threadscape-kai.vercel.app'); // Allow only the production frontend
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -95,5 +97,4 @@ app.get("/", (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
-    connectDB();
 });
