@@ -25,45 +25,33 @@ const PORT = process.env.PORT || 9000;
 
 connectDB();
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://threadscape-kai.vercel.app'); // Allow only the production frontend
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Credentials', 'true'); // If cookies or credentials are used
-    if (req.method === 'OPTIONS') {
-        return res.status(200).end();
-    }
-    next();
-});
-
-
-// app.use(cors({ origin: [process.env.FRONTEND_URL, 'https://threadscape-kai.vercel.app', 'http://localhost:5173'], credentials: true }));
-const allowedOrigins = [
-    'http://192.168.98.98:5173',
-    'https://threadscape-kai.vercel.app',
-    'http://localhost:5173',
-    process.env.FRONTEND_URL,
-];
 
 
 
-app.options('*', cors({
-    origin: allowedOrigins,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-}));
 
-app.use(cors({
+const corsOptions = {
     origin: (origin, callback) => {
+        const allowedOrigins = [
+            'http://192.168.98.73:5173',
+            'https://threadscape-kai.vercel.app',
+            'http://localhost:5173',
+            process.env.FRONTEND_URL,
+        ];
+
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
-            console.log("origin", origin);
+            console.log("allowedOrigin :", origin)
         } else {
             callback(new Error('Not allowed by CORS'));
         }
     },
-}));
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 
 
 app.use(express.json());
