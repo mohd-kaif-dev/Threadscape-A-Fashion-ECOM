@@ -89,7 +89,7 @@ app.use("/api/payment", paymentRoutes)
 
 
 app.get("/", (req, res) => {
-    res.send("Welcome to ThreadScape API!");
+    res.send("Welcome to ThreadScape API!", allowedOrigins);
 });
 
 
