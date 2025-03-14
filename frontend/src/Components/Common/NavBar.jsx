@@ -90,7 +90,7 @@ const NavBar = () => {
           <button onClick={toggleDrawer} className="relative hover:text-black">
             <HiOutlineShoppingBag className="h-5 w-5 md:h-6 md:w-6 text-zinc-700" />
             {cartItemCount > 0 && (
-              <span className="absolute bg-rabbit-red text-white text-[0.15rem] rounded-full px-1 md:px-1.5 md:py-0.5 -top-1">
+              <span className="absolute bg-rabbit-red text-white text-[0.6rem] rounded-full px-1 md:px-1.5 md:py-0.5 -top-1">
                 {cartItemCount}
               </span>
             )}
