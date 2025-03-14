@@ -19,6 +19,12 @@
 
 ## 🌐 Live Link
 Check out the live demo here: [ThreadScape Live](https://threadscape-kai.vercel.app/)
+- While Payment use this dummy card -
+  ```sh
+     Card No. 4242 4242 4242 4242
+     MM/YY - 04/25
+     cvv - 424
+     
 
 ## 🛠️ Installation & Setup
 1. **Clone the Repository**  
