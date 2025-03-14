@@ -58,6 +58,7 @@ const Checkout = () => {
         <h2 className="text-2xl font-bold uppercase mb-4">Checkout</h2>
         <form onSubmit={handleCreateCheckout} className="text-sm">
           <h3 className=" font-semibold mb-3">Contact Details</h3>
+          {/* Email */}
           <div className="mb-4">
             <label htmlFor="Email" className="block text-gray-700">
               Email
@@ -72,7 +73,9 @@ const Checkout = () => {
             />
           </div>
           <h3 className=" font-semibold mb-3">Delivery</h3>
+
           <div className="mb-3 grid grid-cols-2 gap-4">
+            {/* First Name */}
             <div>
               <label htmlFor="firstName" className="block text-gray-700">
                 First Name
@@ -81,6 +84,7 @@ const Checkout = () => {
                 type="text"
                 id="firstName"
                 name="firstName"
+                required
                 value={shippingAddress.firstName}
                 onChange={(e) =>
                   setShippingAddress({
@@ -91,6 +95,7 @@ const Checkout = () => {
                 className="w-full p-2 border border-gray-300 rounded"
               />
             </div>
+            {/* Last Name */}
             <div>
               <label htmlFor="lastName" className="block text-gray-700">
                 Last Name
@@ -110,6 +115,7 @@ const Checkout = () => {
               />
             </div>
           </div>
+          {/* Address */}
           <div className="mb-3">
             <label htmlFor="address" className="block text-gray-700">
               Address
@@ -118,6 +124,7 @@ const Checkout = () => {
               type="text"
               id="address"
               name="address"
+              required
               value={shippingAddress.address}
               onChange={(e) =>
                 setShippingAddress({
@@ -128,7 +135,9 @@ const Checkout = () => {
               className="w-full p-2 border border-gray-300 rounded"
             />
           </div>
+
           <div className="mb-3 grid grid-cols-2 gap-4">
+            {/* City */}
             <div>
               <label htmlFor="city" className="block text-gray-700">
                 City
@@ -137,6 +146,7 @@ const Checkout = () => {
                 type="text"
                 id="city"
                 name="city"
+                required
                 value={shippingAddress.city}
                 onChange={(e) =>
                   setShippingAddress({
@@ -147,6 +157,7 @@ const Checkout = () => {
                 className="w-full p-2 border border-gray-300 rounded"
               />
             </div>
+            {/* Postal Code */}
             <div>
               <label htmlFor="postalCode" className="block text-gray-700">
                 Postal Code
@@ -155,6 +166,7 @@ const Checkout = () => {
                 type="text"
                 id="postalCode"
                 name="postalCode"
+                required
                 value={shippingAddress.postalCode}
                 onChange={(e) =>
                   setShippingAddress({
@@ -166,6 +178,7 @@ const Checkout = () => {
               />
             </div>
           </div>
+          {/* Country */}
           <div className="mb-3">
             <label htmlFor="country" className="block text-gray-700">
               Country
@@ -174,6 +187,7 @@ const Checkout = () => {
               type="text"
               id="country"
               name="country"
+              required
               value={shippingAddress.country}
               onChange={(e) =>
                 setShippingAddress({
@@ -184,6 +198,7 @@ const Checkout = () => {
               className="w-full p-2 border border-gray-300 rounded"
             />
           </div>
+          {/* Phone */}
           <div className="mb-3">
             <label htmlFor="phone" className="block text-gray-700">
               Phone
@@ -192,6 +207,7 @@ const Checkout = () => {
               type="text"
               id="phone"
               name="phone"
+              required
               value={shippingAddress.phone}
               onChange={(e) =>
                 setShippingAddress({
