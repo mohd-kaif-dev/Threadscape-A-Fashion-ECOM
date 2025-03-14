@@ -17,6 +17,9 @@
 - 📈 **Performance Optimization**: Ensures fast and responsive interactions.
 - 🛡️ **Enhanced Security Measures**: Protects customer data and transactions.
 
+## 🌐 Live Link
+Check out the live demo here: [ThreadScape Live](https://threadscape-kai.vercel.app/)
+
 ## 🛠️ Installation & Setup
 1. **Clone the Repository**  
    ```sh
