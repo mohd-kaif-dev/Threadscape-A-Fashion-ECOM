@@ -32,8 +32,8 @@ const NavBar = () => {
     0;
 
   return (
-    <>
-      <nav className=" container mx-auto flex items-center justify-between py-1 px-6">
+    <div className="my-2 fixed z-10 top-10 inset-x-4 md:inset-x-10 mx-auto rounded-xl bg-white/80 shadow-md shadow-black ">
+      <nav className="flex max-w-screen-xl items-center justify-between py-1 px-6 md:px-12">
         {/* Left Logo */}
         <div>
           <Link to="/" className="text-2xl font-medium">
@@ -79,18 +79,18 @@ const NavBar = () => {
           {user?.role === "admin" && (
             <Link
               to="/admin"
-              className="block bg-rabbit-red text-white text-xs items-center rounded font-semibold hover:bg-zinc-700 px-2 py-1 transition-all duration-400"
+              className="hidden md:block bg-rabbit-red text-white text-xs items-center rounded font-semibold hover:hover:bg-rabbit-red/90 px-2 py-1 transition-all duration-400"
             >
               ADMIN
             </Link>
           )}
           <Link to="/profile" className="hover:text-black">
-            <HiOutlineUser className="h-6 w-6 text-gray-700" />
+            <HiOutlineUser className="h-5 w-5 md:h-6 md:w-6 text-zinc-700" />
           </Link>
           <button onClick={toggleDrawer} className="relative hover:text-black">
-            <HiOutlineShoppingBag className="h-6 w-6 text-gray-700" />
+            <HiOutlineShoppingBag className="h-5 w-5 md:h-6 md:w-6 text-zinc-700" />
             {cartItemCount > 0 && (
-              <span className="absolute bg-rabbit-red text-white text-xs rounded-full px-1.5 py-0.5 -top-1">
+              <span className="absolute bg-rabbit-red text-white text-[0.15rem] rounded-full px-1 md:px-1.5 md:py-0.5 -top-1">
                 {cartItemCount}
               </span>
             )}
@@ -98,7 +98,7 @@ const NavBar = () => {
           {/* Search */}
           <SearchBar />
           <button onClick={toggleNavDrawer} className="md:hidden">
-            <HiBars3BottomRight className="h-6 w-6 text-gray-700" />
+            <HiBars3BottomRight className="h-5 w-5 md:h-6 md:w-6 text-zinc-700" />
           </button>
         </div>
         {/* Cart Drawer */}
@@ -110,7 +110,15 @@ const NavBar = () => {
             navDrawer ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <div className="flex justify-end p-4">
+          <div className="flex justify-between p-4">
+            {user?.role === "admin" && (
+              <Link
+                to="/admin"
+                className="fixed flex bottom-5 left-5 right-5 md:hidden  bg-rabbit-red shadow-md shadow-black  text-white items-center justify-center rounded-lg font-semibold hover:bg-rabbit-red/90 tracking-tighter px-2 py-3 transition-all duration-400"
+              >
+                GO TO ADMIN DASHBOARD
+              </Link>
+            )}
             <button
               onClick={toggleNavDrawer}
               className="text-gray-700 hover:text-black"
@@ -153,7 +161,7 @@ const NavBar = () => {
           </div>
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 
