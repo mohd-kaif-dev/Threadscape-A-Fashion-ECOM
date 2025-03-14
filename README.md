@@ -74,7 +74,7 @@ Check out the live demo here: [ThreadScape Live](https://threadscape-kai.vercel.
 We welcome contributions! Feel free to fork the repository and submit a pull request.
 
 ## 📜 License
-This project is open-source and available under the MIT License.
+This project is open-source and available for educational and demo purposes.
 
 
 
