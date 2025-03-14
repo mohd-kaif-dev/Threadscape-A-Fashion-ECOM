@@ -85,7 +85,7 @@ const OrderConfirmationPage = () => {
       <h1 className="text-4xl mb-8 font-bold text-center text-emerald-700">
         Thank You for your Order!
       </h1>
-      {checkout && (
+      {checkout ? (
         <div className="p-6 rounded-lg border">
           <div className="flex flex-col md:flex-row justify-between mb-8">
             {/* Order Id and Date */}
@@ -178,6 +178,10 @@ const OrderConfirmationPage = () => {
               </button>
             </Link>
           </div>
+        </div>
+      ) : (
+        <div className="flex items-center justify-center w-full">
+          <p className="text-lg font-semibold animate-pulse">Loading...</p>
         </div>
       )}
     </div>

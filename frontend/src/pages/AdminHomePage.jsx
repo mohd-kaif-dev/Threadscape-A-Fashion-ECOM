@@ -29,7 +29,7 @@ const AdminHomePage = () => {
     <div className="max-w-7xl mx-auto px-6">
       <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
       {productLoading || orderLoading ? (
-        <p>Loading...</p>
+        <p className="animate-pulse">Loading...</p>
       ) : productError ? (
         <p className="text-red-500">Error fetching products: {productError}</p>
       ) : orderError ? (

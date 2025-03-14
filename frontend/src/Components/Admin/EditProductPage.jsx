@@ -120,7 +120,7 @@ const EditProductPage = () => {
   return (
     <div className="max-w-5xl mx-auto p-6 shadow-md rounded-md">
       <h2 className="text-3xl font-semibold mb-6">Edit Product</h2>
-      {loading && <p>Loading...</p>}
+      {loading && <p className="animate-pulse">Loading...</p>}
       {error && <p>Error: {error}</p>}
       <form onSubmit={handleSubmit}>
         {/* Name */}

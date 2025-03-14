@@ -7,6 +7,7 @@ const OrderDetailsPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { orderDetails, loading, error } = useSelector((state) => state.orders);
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(fetchOrderDetails(id));
@@ -105,7 +106,10 @@ const OrderDetailsPage = () => {
             </table>
           </div>
           {/* Back to Orders Links */}
-          <Link to="/my-orders" className="text-blue-600 hover:underline">
+          <Link
+            to={user.role === "admin" ? "/admin/orders" : "/my-orders"}
+            className="text-blue-600 hover:underline"
+          >
             Back to My Orders
           </Link>
         </div>

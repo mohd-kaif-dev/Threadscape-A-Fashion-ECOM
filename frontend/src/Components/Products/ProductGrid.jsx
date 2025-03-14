@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 const ProductGrid = ({ products, loading, error }) => {
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error}</p>;
+  if (loading) return <p className="text-center animate-pulse">Loading...</p>;
+  if (error) return <p className="text-center">Error : {error}</p>;
   return (
     <>
       {products.length > 0 ? (
@@ -10,7 +10,7 @@ const ProductGrid = ({ products, loading, error }) => {
           {products.map((product, index) => (
             <Link key={index} to={`/product/${product._id}`} className="block">
               <div className="bg-white p-4 rounded-lg shadow-md">
-                <div className="w-full h-40 md:h-56 mb-4 relative overflow-hidden">
+                <div className="w-full h-40 md:h-56 mb-4 relative overflow-hidden rounded-lg">
                   <img
                     src={product.images[0].url}
                     alt={product.name}

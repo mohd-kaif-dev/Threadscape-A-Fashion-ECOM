@@ -25,7 +25,7 @@ const ProductManagement = () => {
     dispatch(fetchAdminProducts());
   }, [dispatch]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p className="animate-pulse">Loading...</p>;
   if (error) return <p>Error : {error}</p>;
   return (
     <div className="p-6 max-w-7xl mx-auto">

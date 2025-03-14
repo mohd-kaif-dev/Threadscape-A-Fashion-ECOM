@@ -29,7 +29,7 @@ const OrderManagement = () => {
   return (
     <div className="p-6">
       <h2 className="text-2xl font-semibold mb-6">Order Management</h2>
-      {loading && <p>Loading...</p>}
+      {loading && <p className="animate-pulse">Loading...</p>}
       {error && <p>{error}</p>}
       <div className="mt-4 rounded-lg shadow-md overflow-x-auto">
         <table className="min-w-full text-left text-sm text-zinc-500">

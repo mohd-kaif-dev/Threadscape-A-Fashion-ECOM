@@ -71,8 +71,8 @@ const ProductDetails = ({ productId }) => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error}</p>;
+  if (loading) return <p className="text-center animate-pulse">Loading...</p>;
+  if (error) return <p className="text-center">Error : {error}</p>;
 
   return (
     <div className="p-4">

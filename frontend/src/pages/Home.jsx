@@ -49,7 +49,9 @@ const Home = () => {
       {bestSeller ? (
         <ProductDetails productId={bestSeller._id} />
       ) : (
-        <p className="text-center">Loading best seller products...</p>
+        <p className="text-center animate-pulse">
+          Loading best seller products...
+        </p>
       )}
       {/* Womens Collections */}
       <div className="container mx-auto p-2">
