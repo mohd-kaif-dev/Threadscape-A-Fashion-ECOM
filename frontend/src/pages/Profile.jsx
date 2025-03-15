@@ -24,7 +24,7 @@ const Profile = () => {
 
   return (
     <div className=" min-h-screen">
-      <div className="flex-grow p-4 md:p-5 ">
+      <div className="flex-grow p-4 md:p-5 mt-20">
         <div className="flex flex-col md:flex-row md:space-x-2 space-y-2 md:space-y-0">
           {/* Left Section */}
           <div className="w-full md:w-1/3 lg:w-1/4 shadow-md shadow-black/50 rounded-lg p-6">

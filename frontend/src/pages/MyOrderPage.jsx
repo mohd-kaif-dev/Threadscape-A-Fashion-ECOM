@@ -12,8 +12,8 @@ const MyOrderPage = () => {
     dispatch(fetchUserOrders());
   }, [dispatch]);
 
-  if (loading) return <h2>Loading...</h2>;
-  if (error) return <h2>Error : {error}</h2>;
+  if (loading) return <h2 className="animate-pulse text-center">Loading...</h2>;
+  if (error) return <h2 className="text-center">Error : {error}</h2>;
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-6">
       <h2 className="text-2xl font-bold mb-4">My Orders</h2>
