@@ -73,7 +73,7 @@ const OrderConfirmationPage = () => {
   //   dispatch(getCheckout());
   // });
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white">
+    <div className="max-w-3xl mx-auto p-6 bg-white mt-16">
       <Confetti
         width={window.innerWidth}
         height={window.innerHeight}

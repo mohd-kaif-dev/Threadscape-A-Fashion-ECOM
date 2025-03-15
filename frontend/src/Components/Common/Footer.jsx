@@ -1,13 +1,17 @@
-import { useEffect } from "react";
 import { IoLogoInstagram } from "react-icons/io";
 import { RiTwitterXLine } from "react-icons/ri";
 import { TbBrandMeta, TbPhoneCall } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Footer = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const location = useLocation();
+  const isCollectionPage = location.pathname.includes("collections");
+  const handleScroll = () => {
+    isCollectionPage
+      ? window.scroll({ top: 0, behavior: "smooth" })
+      : window.scrollTo(0, 0);
+  };
+
   return (
     <footer className="border-t pt-12">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 lg:px-0 ">
@@ -40,7 +44,7 @@ const Footer = () => {
           </form>
         </div>
         {/* Shop Links */}
-        <div>
+        <div onClick={handleScroll}>
           <h3 className="text-lg font-semibold text-gray-800 mb-3">Shop</h3>
           <ul className="space-y-2 text-gray-500">
             <li>

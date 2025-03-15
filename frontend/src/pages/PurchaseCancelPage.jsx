@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const PurchaseCancelPage = () => {
   return (
-    <div className="min-h-[650px] flex items-center justify-center px-4">
+    <div className="min-h-[650px] flex items-center justify-center px-4 mt-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

@@ -52,7 +52,7 @@ const Checkout = () => {
   if (!cart || !cart.products || cart.products.length === 0)
     return <p>Your Cart is empty</p>;
   return (
-    <div className="grid grid-col-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto py-5 px-6 tracking-tighter">
+    <div className="grid grid-col-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto py-5 px-6 tracking-tighter mt-16">
       {/* Left Section */}
       <div className="bg-white rounded-lg p-4">
         <h2 className="text-2xl font-bold uppercase mb-4">Checkout</h2>
