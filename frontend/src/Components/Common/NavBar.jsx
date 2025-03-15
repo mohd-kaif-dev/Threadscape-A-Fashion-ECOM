@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   HiOutlineUser,
   HiOutlineShoppingBag,
@@ -15,6 +15,9 @@ import { motion } from "framer-motion";
 const NavBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [navDrawer, setNavDrawer] = useState(false);
+  const location = useLocation();
+  // Check if the current path is "/"
+  const isHomePage = location.pathname === "/";
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -32,8 +35,12 @@ const NavBar = () => {
     0;
 
   return (
-    <div className="my-2 fixed z-10 top-10 inset-x-4 md:inset-x-10 mx-auto rounded-xl bg-white/80 shadow-md shadow-black ">
-      <nav className="flex max-w-screen-xl items-center justify-between py-1 px-6 md:px-12">
+    <div
+      className={`my-2 ${
+        isHomePage ? "fixed" : "absolute"
+      } z-10 top-10 inset-x-4 md:inset-x-10 mx-auto rounded-xl bg-white/80 shadow-md shadow-black max-w-4xl`}
+    >
+      <nav className="flex items-center justify-between py-1 px-6 md:px-12">
         {/* Left Logo */}
         <div>
           <Link to="/" className="text-2xl font-medium">

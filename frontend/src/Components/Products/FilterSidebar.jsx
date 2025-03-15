@@ -103,9 +103,13 @@ const FilterSidebar = () => {
     setPriceRange([0, params.maxPrice || 100]);
   }, [searchParams]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="p-4">
-      <h3 className="text-xl font-medium text-gray-800 mb-4">Filters</h3>
+    <div>
+      <h3 className="text-2xl font-medium text-gray-800 mb-4">Filters</h3>
       {/* Category Filter */}
       <div className="mb-6">
         <label className="block text-gray-600 font-medium mb-2">Category</label>

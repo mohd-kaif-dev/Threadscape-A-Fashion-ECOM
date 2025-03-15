@@ -47,7 +47,7 @@ const CollectionsPage = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="flex flex-col lg:flex-row">
+    <div className="flex flex-col lg:flex-row mt-20">
       {/* Mobile Filter Button */}
       <button
         onClick={toggleSidebar}
@@ -57,9 +57,10 @@ const CollectionsPage = () => {
       </button>
       <div
         ref={sidebarRef}
+        style={{ scrollbarWidth: "none", scrollBehavior: "smooth" }}
         className={` ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } fixed inset-y-0 z-50 left-0 w-64 bg-white overflow-y-auto transition-transform duration-300 lg:static lg:translate-x-0`}
+        } fixed inset-y-0 z-50 max-w-64 min-w-64 lg:max-w-48 lg:min-w-48 lg:ml-4 lg:my-2  bg-white p-4 overflow-y-auto transition-transform duration-300 lg:static lg:translate-x-0 rounded-xl`}
       >
         <FilterSidebar />
       </div>
