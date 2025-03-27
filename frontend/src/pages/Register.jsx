@@ -47,13 +47,13 @@ const Register = () => {
         initial={{ opacity: 0, x: -200 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="p-8 md:p-12 w-full md:w-1/2 flex items-center justify-center"
+        className="p-8 md:p-12 w-full md:w-1/2 flex items-center justify-center mt-20"
       >
         <form
           onSubmit={handleSubmit}
           className="w-full max-w-xs flex flex-col items-center justify-center rounded-lg shadow-md shadow-black/50 px-8 py-3"
         >
-          <h2 className="text-2xl font-semibold">Fudos</h2>
+          <h1 className="text-3xl font-regular font-[LogoFont]">ThreadScape</h1>
           <h2 className="text-lg font-semibold flex items-center gap-2">
             Welcome!{"   "}
             <RiUserHeartFill className="w-4 h-4" />

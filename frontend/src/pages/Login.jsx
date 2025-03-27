@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 import { loginUser } from "../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { mergeCart } from "../redux/slices/cartSlice";
+import { fetchCart, mergeCart } from "../redux/slices/cartSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -28,6 +28,7 @@ const Login = () => {
           navigate(isCheckoutRedirect ? "/checkout" : "/");
         });
       } else {
+        dispatch(fetchCart({ userId: user }));
         navigate(isCheckoutRedirect ? "/checkout" : "/");
       }
     }
@@ -44,19 +45,19 @@ const Login = () => {
         initial={{ opacity: 0, x: -200 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="p-8 md:p-12 w-full md:w-1/2 flex items-center justify-center"
+        className="p-8 md:p-12 w-full md:w-1/2 flex items-center justify-center mt-12"
       >
         <form
           onSubmit={handleSubmit}
           className="w-full max-w-xs flex flex-col items-center justify-center rounded-lg shadow-md shadow-black/50 px-8 py-3"
         >
-          <h2 className="text-2xl font-semibold">Fudos</h2>
+          <h1 className="text-3xl font-regular font-[LogoFont]">ThreadScape</h1>
           <h2 className="text-lg font-semibold">Hey there! 👋</h2>
           <p className="text-center mb-4 text-xs font-semibold">
             Enter your username and password to login
           </p>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-semibold mb-2">
+            <label htmlFor="email" className="block text-sm font-semibold mb-1">
               Email
             </label>
             <input
@@ -69,7 +70,7 @@ const Login = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-semibold mb-2">
+            <label htmlFor="email" className="block text-sm font-semibold mb-1">
               Password
             </label>
             <input
